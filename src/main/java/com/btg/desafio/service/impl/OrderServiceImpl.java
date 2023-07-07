@@ -12,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.groupingBy;
 
 @Service
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
-    private static Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository) {
@@ -43,11 +46,21 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderByClient> getOrderByClient() {
-        String functionName =  "GET-ORDER-BY-CLIENT";
-        LOGGER.info("[START-{}]",functionName);
+        String functionName = "GET-ORDER-BY-CLIENT";
+        LOGGER.info("[START-{}]", functionName);
         List<OrderByClient> list = orderRepository.orderBYCustomer();
-        LOGGER.info("[END-{}] :: order by client : {}",functionName,list);
+        LOGGER.info("[END-{}] :: order by client : {}", functionName, list);
         return list;
+    }
+
+    @Override
+    public Map<Long, List<Orders>> getClientsOrders() {
+        String functionName = "GET-CLIENTS-ORDERS";
+        LOGGER.info("[START-{}]", functionName);
+        List<Orders> orders = orderRepository.findAll();
+        final Map<Long, List<Orders>> ordersByClients = orders.stream().collect(groupingBy(Orders::getCodigoCliente));
+        LOGGER.info("[END-{}] :: order by client : {}", functionName, ordersByClients);
+        return ordersByClients;
     }
 
 }
