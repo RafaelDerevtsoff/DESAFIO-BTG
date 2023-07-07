@@ -53,7 +53,6 @@ public class Orders {
     @Override
     public String toString() {
         return "Orders{" +
-//                "id=" + id +
                 ", codigoPedido=" + codigoPedido +
                 ", codigoCliente=" + codigoCliente +
                 ", items=" + items +

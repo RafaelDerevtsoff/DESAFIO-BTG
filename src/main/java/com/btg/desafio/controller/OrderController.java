@@ -18,8 +18,6 @@ import java.util.Map;
 @RestController
 public class OrderController {
     private final OrderService orderService;
-    private final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
-
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;

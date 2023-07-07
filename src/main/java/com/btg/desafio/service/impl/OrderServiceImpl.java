@@ -37,8 +37,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Double getTotal(Long orderNumber) {
+        String functionName = "GET-TOTAL";
+        LOGGER.info("[START-{}]", functionName);
         final Optional<Orders> order = orderRepository.findById(orderNumber);
         if (order.isPresent()) {
+            LOGGER.info("[END-{}]", functionName);
             return order.get().getItems().stream().mapToDouble(Item::getTotal).sum();
         }
         throw new NotFoundException("ORDER NOT FOUND");
