@@ -21,3 +21,10 @@ services:
     environment:
       - POSTGRES_HOST=postgres
       - RABBIT_HOST=rabbitmq
+  rabbitmicroservice:
+    image: rabbitmicroservice:1.0
+    container_name: rabbitmicroservice
+    ports:
+      - 8081:8082
+    environment:
+      - POSTGRES_HOST=postgres
