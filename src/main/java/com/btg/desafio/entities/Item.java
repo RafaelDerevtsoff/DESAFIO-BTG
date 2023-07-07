@@ -1,6 +1,7 @@
 package com.btg.desafio.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Formula;
 
 @Entity
 @Table(name = "item")
@@ -11,6 +12,14 @@ public class Item {
     private String produto;
     private Long quantidade;
     private Double preco;
+    @Formula("quantidade * preco")
+    private Double total;
+
+    public Double getTotal() {
+        return total;
+    }
+
+
     public Item() {
     }
 

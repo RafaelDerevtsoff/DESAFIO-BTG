@@ -1,20 +1,21 @@
 package com.btg.desafio.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Formula;
 
 import java.util.List;
 
 @Entity
 public class Orders {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private Long codigoPedido;
     private Long codigoCliente;
     @OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL)
     @JoinColumn(name= "order_fk",referencedColumnName = "codigoPedido")
+    @JsonProperty("itens")
     private List<Item> items;
+
 
     public Orders() {
     }
@@ -33,14 +34,6 @@ public class Orders {
         this.items = items;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getCodigoPedido() {
         return codigoPedido;
     }
@@ -57,5 +50,13 @@ public class Orders {
         this.codigoCliente = codigoCliente;
     }
 
-
+    @Override
+    public String toString() {
+        return "Orders{" +
+//                "id=" + id +
+                ", codigoPedido=" + codigoPedido +
+                ", codigoCliente=" + codigoCliente +
+                ", items=" + items +
+                '}';
+    }
 }
