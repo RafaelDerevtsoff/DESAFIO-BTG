@@ -15,6 +15,22 @@ public class OrderByClient {
         this.total = total;
     }
 
+    public Long getClient() {
+        return client;
+    }
+
+    public void setClient(Long client) {
+        this.client = client;
+    }
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+
     @Override
     public String toString() {
         return "OrderByClient{" +

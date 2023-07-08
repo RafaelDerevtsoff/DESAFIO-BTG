@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface OrderService {
-    void saveOrder(Orders orders);
     Double getTotal(Long orderNumber);
     List<OrderByClient> getOrderByClient();
     Map<Long, List<Orders>> getClientsOrders();

@@ -14,7 +14,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=admin
   desafio:
-    image: desafio:1.0
+    image: leafard/desafio_btg:desafio_micro
     container_name: desafio-compose
     ports:
       - 8080:8080
@@ -22,7 +22,7 @@ services:
       - POSTGRES_HOST=postgres
       - RABBIT_HOST=rabbitmq
   rabbitmicroservice:
-    image: rabbitmicroservice:1.0
+    image: leafard/desafio_btg:rabbitmicroservice
     container_name: rabbitmicroservice
     ports:
       - 8081:8082

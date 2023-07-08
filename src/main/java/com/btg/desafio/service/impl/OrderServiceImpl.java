@@ -27,13 +27,6 @@ public class OrderServiceImpl implements OrderService {
         this.orderRepository = orderRepository;
     }
 
-    @Override
-    public void saveOrder(Orders order) {
-        String functionName = "SAVE-ORDER";
-        LOGGER.info("[START-{}] order :{}", functionName, order.toString());
-        orderRepository.save(order);
-        LOGGER.info("[END-{}]", functionName);
-    }
 
     @Override
     public Double getTotal(Long orderNumber) {
